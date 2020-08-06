@@ -25,38 +25,30 @@ We'll be checking what *classes* are present on those items in order to know wha
 
 Did you notice how all three sections listed above have `.color-${n}` classes on them or their elements? That brings us to the CSS, which has those classes, but no actual color assigned to them. Put some code in there to give `color-1` and `color-2` and so on each a background-color... but keep the same class names. That way we can change what `color-3` is any time we want, without having to change the name throughout the code from `purple` to `mauve`. Additionally, this drives home that we're not changing CSS directly... just classes!
 
-Once you've got those colors defined, we're on to laying things out.
-
-
-### Now For Layout
-
-Our page is supposed to look like the page linked to above. It certainly does not!
-
-There are two main layout challenges for this assignment:
-
-1. Center everything along the vertical axis. Sounds like a Flexbox problem!
-2. Put the *100* divs in `.canvas` in a 10x10 grid. Sounds like a problem for... well, Grid, obviously!
-
-**Layout is a large part of this assignment**, which is why we've been working on it so hard. But feel free to switch back and forth between that and the JavaScript below.
+Once you've got those colors defined, it's on to functionality!
 
 
 ### BS Paint's JavaScript
 
-It will be JavaScript's job to connect all the pieces logically, with event listeners and DOM manipulation galore. **We'll be using class tools to change the CSS here exclusively.** Do *not* use any `style` attributes! If we change the class on an element, it will get all all the CSS rules from that class. Neat stuff!
+It will be JavaScript's job to connect all the pieces logically, with event listeners and DOM manipulation galore. **We'll be using class tools to change the CSS here exclusively.** Do *not* use any `style` attributes! If we change the class on an element, it will get all the CSS rules from that class. Neat stuff!
 
-Here are some (possibly new to you!) tools you can use:
+Here are some tools you can use:
 
-* `classList` and [its many awesome methods](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Methods). 4 out of 5 DOM manipulators recommend this tool.
-* Making `classList` an array using `Array.from()`. While you gain array methods by doing this, you lose all of `classList`'s native methods in the exchange.
-* `className`, which is actually a string with spaces separating the class names (if there are more than one). It is, in fact, in the exact same format as when you add classes in the html. If you want to make an array from this string instead of using the `Array.from()` method, converting a string of letters to an array of words is easy enough!
+* `querySelectorAll` to grab all elements that match a certain selector
+* `addEventListener` to give an element a function it should run on click
+* `for of` loops (or `.forEach`!) to give each element in a list its listener
+* `classList` and [its many awesome methods](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Methods). 4 out of 5 DOM manipulators recommend this tool. There are examples there, but do some research for an article specific to whatever method you want to use!
+
+
+### Hints
+
+* The current color of every single element is its second class. That means it has a specific index. We can easily find out what the color of the paintbrush is when we need to apply it to a square using this information.
+* We can use `.add` and `.remove` and `.toggle`, but the cleanest solution will involve `.replace`. Think about what the old class is on the element you wish to change, and what class you'd like to `.replace` it with. Check the docs in the above section for how to use it if you're unsure!
 
 
 ### A Note On Canvas Size
 
-We have a 10x10 canvas right now, but you can add more if you'd like using a couple different methods:
-
-1. Add a bunch more to the html (think about using an emmet abbreviation), then adjust the grid CSS in `.canvas` in `style.css`.
-2. Add the `div`s via JavaScript. This way's more fun!
+We have a 10x10 canvas right now, but you can add more if you'd like using the method outlined in the code comments.
 
 
 ### Stretch Goals
@@ -67,7 +59,7 @@ There are a lot of different directions you could take this project to stretch y
 * Add a Dark Mode toggle that will change the general theme and also the colors to match.
 * Increase the number of squares on the canvas. You may have to adjust the size of the squares (or canvas). There is no real upper limit! I guess the number of pixels available to the user? Yeah, that's an actual upper limit.
 * Add an easter egg message to `.message` that activates when the user draws a particular pattern. Checking for a particular pattern can be difficult if you make too complex a one, so start with something simple and expand from there to as weird an easter egg as you can.
-* Allow the user to dynamically allocate the size of the canvas. You'll have to take in the desired canvas size from the user (an input box, maybe?), then make the right number of squares dynamically.
+* Allow the user to dynamically allocate the size of the canvas. You'll have to take in the desired canvas size from the user (an input box, maybe?), then make the right number of squares dynamically. Changing `gridWidth` will be part of it, but you'd also need to set `gridtemplate-rows` and `grid-template-columns`.
 * Add some more tools besides a simple paintbrush. Here are some examples, but feel free to come up with your own ideas!
   * A tool that colors a square and its neighbors.
   * A tool that combines colors. For example, if the color is red and you paint it yellow with this tool, you get orange.
